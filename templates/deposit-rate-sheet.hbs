@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      @page {
+        size: Letter;
+        margin: 2.5cm 2cm;
+        @bottom-center {
+          content: "Confidential — page " counter(page) " of " counter(pages);
+          font-size: 8pt;
+          color: #667;
+        }
+      }
+      body {
+        font-family: Georgia, "Times New Roman", serif;
+        color: #1a1f2b;
+        font-size: 11pt;
+        line-height: 1.5;
+      }
+      .head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 0 0 18pt;
+      }
+      .logo {
+        height: 42px;
+        width: auto;
+      }
+      h1 {
+        font-size: 20pt;
+        margin: 0 0 2pt;
+        letter-spacing: 0.3px;
+      }
+      .sub {
+        color: #556;
+        font-size: 10pt;
+        margin: 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10pt 0 16pt;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 7pt 9pt;
+        border-bottom: 1px solid #d7dbe4;
+      }
+      th {
+        background: #f3f5f9;
+        font-size: 9pt;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+      }
+      td.apy {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .fine {
+        font-size: 8.5pt;
+        color: #667;
+        margin-top: 22pt;
+        border-top: 1px solid #d7dbe4;
+        padding-top: 10pt;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="head">
+      <img
+        class="logo"
+        src="{{{assets.northwind-logo.v1}}}"
+        alt="{{parameterSets.disclosures.v1.bankname}} logo"
+      />
+      <div>
+        <h1>{{parameterSets.disclosures.v1.bankname}} — Deposit Rate Sheet</h1>
+        <p class="sub">
+          Effective {{date "2026-07-01" locale="en-US" style="long"}} · Prepared
+          by {{data.preparedBy}}
+        </p>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Minimum balance</th>
+          <th>Term</th>
+          <th class="apy">APY</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>High-Yield Savings</td>
+          <td>
+            {{currency 0 currency="USD" locale="en-US" maxFractionDigits=0}}
+          </td>
+          <td>None</td>
+          <td class="apy">
+            {{percent 0.0430 locale="en-US" minFractionDigits=2
+            maxFractionDigits=2}}
+          </td>
+        </tr>
+        <tr>
+          <td>Money Market</td>
+          <td>
+            {{currency 10000 currency="USD" locale="en-US" maxFractionDigits=0}}
+          </td>
+          <td>None</td>
+          <td class="apy">
+            {{percent 0.0455 locale="en-US" minFractionDigits=2
+            maxFractionDigits=2}}
+          </td>
+        </tr>
+        <tr>
+          <td>Certificate of Deposit</td>
+          <td>
+            {{currency 1000 currency="USD" locale="en-US" maxFractionDigits=0}}
+          </td>
+          <td>12 months</td>
+          <td class="apy">
+            {{percent 0.0485 locale="en-US" minFractionDigits=2
+            maxFractionDigits=2}}
+          </td>
+        </tr>
+        <tr>
+          <td>Certificate of Deposit</td>
+          <td>
+            {{currency 1000 currency="USD" locale="en-US" maxFractionDigits=0}}
+          </td>
+          <td>36 months</td>
+          <td class="apy">
+            {{percent 0.0460 locale="en-US" minFractionDigits=2
+            maxFractionDigits=2}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="fine">
+      Annual Percentage Yields (APY) are accurate as of the effective date and
+      may change after account opening. Fees may reduce earnings. A penalty may
+      be imposed for early withdrawal from a Certificate of Deposit.
+      {{parameterSets.disclosures.v1.fdicnotice}}
+      {{parameterSets.disclosures.v1.contact}}
+    </p>
+  </body>
+</html>

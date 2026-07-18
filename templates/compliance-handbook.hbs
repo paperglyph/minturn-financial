@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      @page {
+        size: Letter;
+        margin: 2.4cm 2cm;
+        @top-center {
+          content: string(chapter);
+          font:
+            8pt Georgia,
+            serif;
+          color: #667;
+        }
+        @bottom-center {
+          content: counter(page);
+          font:
+            8pt Georgia,
+            serif;
+          color: #889;
+        }
+      }
+      @page cover {
+        margin: 0;
+        @top-center {
+          content: none;
+        }
+        @bottom-center {
+          content: none;
+        }
+      }
+      body {
+        font-family: Georgia, "Times New Roman", serif;
+        color: #1a1f2b;
+        font-size: 11pt;
+        line-height: 1.5;
+        counter-reset: chap;
+      }
+      /* Sized to the exact Letter page (8.5in x 11in) so the gradient fills the whole cover page — 100vh is
+     unreliable in the engine; break-after sends the table of contents to its own page. */
+      .cover {
+        page: cover;
+        break-after: page;
+        width: 8.5in;
+        height: 11in;
+        box-sizing: border-box;
+        padding: 3cm;
+        color: #fff;
+        background: linear-gradient(155deg, #16233f 0%, #2c3f66 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .cover img {
+        height: 56px;
+        width: auto;
+        margin-bottom: 26pt;
+      }
+      .cover h1 {
+        font-size: 30pt;
+        margin: 0 0 10pt;
+        letter-spacing: 0.4px;
+      }
+      .cover .sub {
+        font-size: 13pt;
+        color: #cfd9ee;
+        line-height: 1.6;
+      }
+      nav.toc {
+        break-after: page;
+      }
+      nav.toc h2 {
+        font-size: 16pt;
+        color: #16233f;
+        border-bottom: 2px solid #16233f;
+        padding-bottom: 6pt;
+        margin: 0 0 12pt;
+      }
+      nav.toc ol {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      nav.toc li {
+        margin: 0 0 9pt;
+      }
+      nav.toc a {
+        text-decoration: none;
+        color: #1a1f2b;
+      }
+      nav.toc a::after {
+        content: leader(". ") target-counter(attr(href), page);
+        color: #667;
+      }
+      h1.chapter {
+        break-before: page;
+        font-size: 18pt;
+        color: #16233f;
+        margin: 0 0 8pt;
+        padding-bottom: 4pt;
+        border-bottom: 1px solid #d7dbe4;
+        counter-increment: chap;
+        bookmark-level: 1;
+        bookmark-label: content();
+        string-set: chapter counter(chap) ". " content();
+      }
+      h1.chapter::before {
+        content: counter(chap) ". ";
+        color: #6b7a99;
+      }
+      h2 {
+        font-size: 12.5pt;
+        color: #2c3f66;
+        margin: 14pt 0 5pt;
+        bookmark-level: 2;
+      }
+      p {
+        margin: 0 0 9pt;
+        text-align: justify;
+      }
+      .note {
+        background: #f3f5f9;
+        border-left: 3px solid #16233f;
+        padding: 8pt 12pt;
+        margin: 12pt 0;
+        font-size: 10pt;
+        break-inside: avoid;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="cover">
+      <img
+        src="{{{assets.northwind-logo.v1}}}"
+        alt="{{parameterSets.disclosures.v1.bankname}} logo"
+      />
+      <h1>{{parameterSets.disclosures.v1.bankname}}</h1>
+      <div class="sub">
+        Deposit Compliance Handbook<br />{{data.edition}} · Effective
+        {{data.effectiveDate}}
+      </div>
+    </section>
+    <nav class="toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#ch-scope">Scope &amp; regulatory basis</a></li>
+        <li><a href="#ch-disclosures">Required customer disclosures</a></li>
+        <li><a href="#ch-review">Review &amp; sign-off obligations</a></li>
+        <li><a href="#ch-records">Records &amp; retention</a></li>
+      </ol>
+    </nav>
+    <h1 class="chapter" id="ch-scope">Scope &amp; regulatory basis</h1>
+    <p>
+      This handbook governs every customer-facing deposit document Northwind
+      Financial publishes — rate sheets, account disclosures, and statements. It
+      codifies the controls that keep those documents accurate, compliant, and
+      traceable from draft to publication.
+    </p>
+    <h2>Applicability</h2>
+    <p>
+      The controls in this handbook apply to all deposit product lines and to
+      every team that authors, reviews, or publishes a customer-facing document,
+      regardless of channel.
+    </p>
+    <div class="note">{{parameterSets.disclosures.v1.fdicnotice}}</div>
+    <h1 class="chapter" id="ch-disclosures">Required customer disclosures</h1>
+    <p>
+      Every published rate or account document must carry the applicable
+      regulatory disclosures in full and unabridged form. Annual Percentage
+      Yields are stated as of an effective date, and any condition that could
+      reduce earnings — fees, minimum balances, early-withdrawal penalties — is
+      disclosed alongside the yield.
+    </p>
+    <h2>Placement</h2>
+    <p>
+      Disclosures appear on the same document as the figures they qualify; a
+      reference to a separate document does not satisfy this requirement.
+    </p>
+    <h1 class="chapter" id="ch-review">Review &amp; sign-off obligations</h1>
+    <p>
+      No deposit document is published until it clears the full approval
+      pipeline: engineering, product, legal &amp; compliance, and marketing each
+      sign off in order. A stage may not be skipped, and an unresolved review
+      comment blocks final approval.
+    </p>
+    <h2>Segregation of duties</h2>
+    <p>
+      The author of a version may not approve their own stage. Each sign-off is
+      attributed to a named approver and recorded in the immutable audit trail.
+    </p>
+    <h1 class="chapter" id="ch-records">Records &amp; retention</h1>
+    <p>
+      The full chain of custody for every published version — authorship, each
+      stage sign-off, the resolved review thread, and the publication event — is
+      retained for the regulatory retention period and is available for
+      examination on request.
+    </p>
+    <div class="note">{{parameterSets.disclosures.v1.contact}}</div>
+  </body>
+</html>

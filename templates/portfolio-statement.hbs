@@ -1,0 +1,472 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      @page {
+        size: Letter;
+        margin: 2.4cm 2cm 2.2cm;
+        @top-left {
+          content: string(doctitle);
+          font:
+            8pt Georgia,
+            serif;
+          color: #667;
+        }
+        @top-right {
+          content: "{{data.statementPeriod}}";
+          font:
+            8pt Georgia,
+            serif;
+          color: #667;
+        }
+        @bottom-left {
+          content: "Confidential";
+          font:
+            8pt Georgia,
+            serif;
+          color: #a2472f;
+        }
+        @bottom-right {
+          content: "Page " counter(page) " of " counter(pages);
+          font:
+            8pt Georgia,
+            serif;
+          color: #889;
+        }
+      }
+      body {
+        font-family: Georgia, "Times New Roman", serif;
+        color: #1a1f2b;
+        font-size: 10.5pt;
+        line-height: 1.45;
+      }
+      .masthead {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 2px solid #16233f;
+        padding-bottom: 10pt;
+        margin-bottom: 14pt;
+      }
+      .masthead img {
+        height: 40px;
+        width: auto;
+      }
+      .masthead h1 {
+        font-size: 16pt;
+        margin: 0;
+        string-set: doctitle content();
+      }
+      .masthead .meta {
+        margin-left: auto;
+        text-align: right;
+        font-size: 9pt;
+        color: #556;
+        line-height: 1.4;
+      }
+      h2 {
+        font-size: 12pt;
+        margin: 16pt 0 6pt;
+        color: #16233f;
+        border-bottom: 1px solid #d7dbe4;
+        padding-bottom: 3pt;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      thead th {
+        background: #16233f;
+        color: #fff;
+        font-size: 8pt;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 6pt 8pt;
+        text-align: left;
+      }
+      thead th.num {
+        text-align: right;
+      }
+      tbody td {
+        padding: 4.5pt 8pt;
+        border-bottom: 1px solid #e7eaf1;
+      }
+      td.sym {
+        font-family: "Courier New", monospace;
+        font-size: 9pt;
+        color: #556;
+      }
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      tbody tr {
+        break-inside: avoid;
+      }
+      tfoot td {
+        padding: 7pt 8pt;
+        border-top: 2px solid #16233f;
+        font-weight: bold;
+      }
+      tfoot td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .callout {
+        break-inside: avoid;
+        background: #f3f5f9;
+        border-left: 3px solid #16233f;
+        padding: 8pt 12pt;
+        margin: 16pt 0;
+        font-size: 9.5pt;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="masthead">
+      <img
+        src="{{{assets.northwind-logo.v1}}}"
+        alt="{{parameterSets.disclosures.v1.bankname}} logo"
+      />
+      <h1>{{parameterSets.disclosures.v1.bankname}} — Portfolio Statement</h1>
+      <div class="meta">
+        Account holder: {{data.accountHolder}}<br />Account
+        {{data.accountNumber}}<br />As of {{data.asOfDate}}
+      </div>
+    </div>
+    <h2>Holdings</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Security</th>
+          <th>Symbol</th>
+          <th class="num">Shares</th>
+          <th class="num">Price</th>
+          <th class="num">Market value</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="4">Total portfolio value</td>
+          <td class="num">$894,247.50</td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <td>Northwind Core Bond Fund</td>
+          <td class="sym">NWCBX</td>
+          <td class="num">1,840</td>
+          <td class="num">$18.42</td>
+          <td class="num">$33,892.80</td>
+        </tr>
+        <tr>
+          <td>Meridian Large-Cap Growth</td>
+          <td class="sym">MLCGX</td>
+          <td class="num">620</td>
+          <td class="num">$74.15</td>
+          <td class="num">$45,973.00</td>
+        </tr>
+        <tr>
+          <td>Atlas Total Market Index</td>
+          <td class="sym">ATMIX</td>
+          <td class="num">1,210</td>
+          <td class="num">$132.08</td>
+          <td class="num">$159,816.80</td>
+        </tr>
+        <tr>
+          <td>Cascade Municipal Income</td>
+          <td class="sym">CMIFX</td>
+          <td class="num">2,450</td>
+          <td class="num">$10.34</td>
+          <td class="num">$25,333.00</td>
+        </tr>
+        <tr>
+          <td>Harborview Dividend Equity</td>
+          <td class="sym">HVDEX</td>
+          <td class="num">880</td>
+          <td class="num">$41.77</td>
+          <td class="num">$36,757.60</td>
+        </tr>
+        <tr>
+          <td>Sterling Short-Term Treasury</td>
+          <td class="sym">SSTTX</td>
+          <td class="num">3,300</td>
+          <td class="num">$9.86</td>
+          <td class="num">$32,538.00</td>
+        </tr>
+        <tr>
+          <td>Beacon Mid-Cap Value</td>
+          <td class="sym">BMCVX</td>
+          <td class="num">540</td>
+          <td class="num">$29.63</td>
+          <td class="num">$16,000.20</td>
+        </tr>
+        <tr>
+          <td>Northwind Money Market</td>
+          <td class="sym">NWMXX</td>
+          <td class="num">12,500</td>
+          <td class="num">$1.00</td>
+          <td class="num">$12,500.00</td>
+        </tr>
+        <tr>
+          <td>Vantage International Equity</td>
+          <td class="sym">VIEQX</td>
+          <td class="num">760</td>
+          <td class="num">$22.19</td>
+          <td class="num">$16,864.40</td>
+        </tr>
+        <tr>
+          <td>Cedar Ridge High-Yield</td>
+          <td class="sym">CRHYX</td>
+          <td class="num">1,920</td>
+          <td class="num">$7.51</td>
+          <td class="num">$14,419.20</td>
+        </tr>
+        <tr>
+          <td>Pinnacle Real Estate Index</td>
+          <td class="sym">PREIX</td>
+          <td class="num">430</td>
+          <td class="num">$58.24</td>
+          <td class="num">$25,043.20</td>
+        </tr>
+        <tr>
+          <td>Northwind Balanced Allocation</td>
+          <td class="sym">NWBAX</td>
+          <td class="num">1,150</td>
+          <td class="num">$26.70</td>
+          <td class="num">$30,705.00</td>
+        </tr>
+        <tr>
+          <td>Granite Small-Cap Core</td>
+          <td class="sym">GSCCX</td>
+          <td class="num">610</td>
+          <td class="num">$19.05</td>
+          <td class="num">$11,620.50</td>
+        </tr>
+        <tr>
+          <td>Summit Investment Grade Bond</td>
+          <td class="sym">SIGBX</td>
+          <td class="num">2,010</td>
+          <td class="num">$11.28</td>
+          <td class="num">$22,672.80</td>
+        </tr>
+        <tr>
+          <td>Aurora Technology Sector</td>
+          <td class="sym">ATSFX</td>
+          <td class="num">340</td>
+          <td class="num">$96.42</td>
+          <td class="num">$32,782.80</td>
+        </tr>
+        <tr>
+          <td>Lakeside Preferred Income</td>
+          <td class="sym">LPIFX</td>
+          <td class="num">1,470</td>
+          <td class="num">$14.63</td>
+          <td class="num">$21,506.10</td>
+        </tr>
+        <tr>
+          <td>Northwind Inflation-Protected</td>
+          <td class="sym">NWIPX</td>
+          <td class="num">990</td>
+          <td class="num">$21.11</td>
+          <td class="num">$20,898.90</td>
+        </tr>
+        <tr>
+          <td>Foundry Emerging Markets</td>
+          <td class="sym">FEMKX</td>
+          <td class="num">720</td>
+          <td class="num">$16.88</td>
+          <td class="num">$12,153.60</td>
+        </tr>
+        <tr>
+          <td>Keystone Health Sciences</td>
+          <td class="sym">KHSFX</td>
+          <td class="num">280</td>
+          <td class="num">$88.55</td>
+          <td class="num">$24,794.00</td>
+        </tr>
+        <tr>
+          <td>Redwood Ultra-Short Bond</td>
+          <td class="sym">RUSBX</td>
+          <td class="num">4,100</td>
+          <td class="num">$9.94</td>
+          <td class="num">$40,754.00</td>
+        </tr>
+        <tr>
+          <td>Harborview Utilities Income</td>
+          <td class="sym">HVUIX</td>
+          <td class="num">910</td>
+          <td class="num">$24.37</td>
+          <td class="num">$22,176.70</td>
+        </tr>
+        <tr>
+          <td>Meridian Capital Appreciation</td>
+          <td class="sym">MCAPX</td>
+          <td class="num">500</td>
+          <td class="num">$63.20</td>
+          <td class="num">$31,600.00</td>
+        </tr>
+        <tr>
+          <td>Atlas ESG Leaders Index</td>
+          <td class="sym">AESGX</td>
+          <td class="num">640</td>
+          <td class="num">$34.72</td>
+          <td class="num">$22,220.80</td>
+        </tr>
+        <tr>
+          <td>Cascade Tax-Exempt Bond</td>
+          <td class="sym">CTEBX</td>
+          <td class="num">1,780</td>
+          <td class="num">$10.05</td>
+          <td class="num">$17,889.00</td>
+        </tr>
+        <tr>
+          <td>Sterling Government Money</td>
+          <td class="sym">SGMXX</td>
+          <td class="num">8,600</td>
+          <td class="num">$1.00</td>
+          <td class="num">$8,600.00</td>
+        </tr>
+        <tr>
+          <td>Beacon Global Infrastructure</td>
+          <td class="sym">BGIFX</td>
+          <td class="num">470</td>
+          <td class="num">$27.49</td>
+          <td class="num">$12,920.30</td>
+        </tr>
+        <tr>
+          <td>Northwind Target 2045</td>
+          <td class="sym">NWT45</td>
+          <td class="num">830</td>
+          <td class="num">$33.16</td>
+          <td class="num">$27,522.80</td>
+        </tr>
+        <tr>
+          <td>Vantage Developed Markets</td>
+          <td class="sym">VDMKX</td>
+          <td class="num">690</td>
+          <td class="num">$20.02</td>
+          <td class="num">$13,813.80</td>
+        </tr>
+        <tr>
+          <td>Cedar Ridge Floating Rate</td>
+          <td class="sym">CRFRX</td>
+          <td class="num">1,350</td>
+          <td class="num">$9.41</td>
+          <td class="num">$12,703.50</td>
+        </tr>
+        <tr>
+          <td>Pinnacle Consumer Staples</td>
+          <td class="sym">PCSFX</td>
+          <td class="num">360</td>
+          <td class="num">$52.88</td>
+          <td class="num">$19,036.80</td>
+        </tr>
+        <tr>
+          <td>Granite Quality Dividend</td>
+          <td class="sym">GQDFX</td>
+          <td class="num">940</td>
+          <td class="num">$31.55</td>
+          <td class="num">$29,657.00</td>
+        </tr>
+        <tr>
+          <td>Summit Corporate Bond</td>
+          <td class="sym">SCBFX</td>
+          <td class="num">1,620</td>
+          <td class="num">$12.07</td>
+          <td class="num">$19,553.40</td>
+        </tr>
+        <tr>
+          <td>Aurora Clean Energy</td>
+          <td class="sym">ACEFX</td>
+          <td class="num">410</td>
+          <td class="num">$18.73</td>
+          <td class="num">$7,679.30</td>
+        </tr>
+        <tr>
+          <td>Lakeside Convertible Income</td>
+          <td class="sym">LCIFX</td>
+          <td class="num">780</td>
+          <td class="num">$15.19</td>
+          <td class="num">$11,848.20</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">{{parameterSets.disclosures.v1.fdicnotice}}</div>
+    <h2>Recent activity</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th class="num">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Jun 03</td>
+          <td>Dividend — Northwind Core Bond Fund</td>
+          <td>Credit</td>
+          <td class="num">$289.44</td>
+        </tr>
+        <tr>
+          <td>Jun 07</td>
+          <td>Purchase — Atlas Total Market Index</td>
+          <td>Debit</td>
+          <td class="num">-$3,120.00</td>
+        </tr>
+        <tr>
+          <td>Jun 12</td>
+          <td>Interest — Northwind Money Market</td>
+          <td>Credit</td>
+          <td class="num">$41.02</td>
+        </tr>
+        <tr>
+          <td>Jun 15</td>
+          <td>Dividend — Harborview Dividend Equity</td>
+          <td>Credit</td>
+          <td class="num">$176.90</td>
+        </tr>
+        <tr>
+          <td>Jun 18</td>
+          <td>Sale — Aurora Technology Sector</td>
+          <td>Credit</td>
+          <td class="num">$4,820.75</td>
+        </tr>
+        <tr>
+          <td>Jun 20</td>
+          <td>Purchase — Summit Investment Grade Bond</td>
+          <td>Debit</td>
+          <td class="num">-$2,260.00</td>
+        </tr>
+        <tr>
+          <td>Jun 24</td>
+          <td>Dividend — Lakeside Preferred Income</td>
+          <td>Credit</td>
+          <td class="num">$210.33</td>
+        </tr>
+        <tr>
+          <td>Jun 26</td>
+          <td>Quarterly management fee</td>
+          <td>Debit</td>
+          <td class="num">-$58.10</td>
+        </tr>
+        <tr>
+          <td>Jun 28</td>
+          <td>Interest — Sterling Short-Term Treasury</td>
+          <td>Credit</td>
+          <td class="num">$88.47</td>
+        </tr>
+        <tr>
+          <td>Jun 30</td>
+          <td>Reinvestment — Northwind Balanced Allocation</td>
+          <td>Debit</td>
+          <td class="num">-$1,000.00</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">{{parameterSets.disclosures.v1.contact}}</div>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      @page {
+        size: Letter;
+        margin: 0;
+      }
+      body {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        color: #1a1f2b;
+      }
+      .cert {
+        box-sizing: border-box;
+        width: 8.5in;
+        height: 11in;
+        padding: 1.3cm;
+        background: #fbfaf6;
+        display: flex;
+      }
+      .frame {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        border: 2px solid #16233f;
+        outline: 4px solid #c9a24a;
+        outline-offset: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2.2cm;
+      }
+      .frame img {
+        height: 54px;
+        width: auto;
+        margin-bottom: 18pt;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 9.5pt;
+        color: #8a6d2f;
+      }
+      h1 {
+        font-size: 27pt;
+        margin: 6pt 0 2pt;
+        color: #16233f;
+        letter-spacing: 0.5px;
+      }
+      .holder {
+        font-size: 21pt;
+        font-style: italic;
+        margin: 20pt 0 4pt;
+        color: #16233f;
+      }
+      .grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30pt 44pt;
+        margin: 26pt 0;
+      }
+      .grid .k {
+        font-size: 8pt;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: #667;
+      }
+      .grid .v {
+        font-size: 15pt;
+        font-variant-numeric: tabular-nums;
+        color: #1a1f2b;
+      }
+      .seal {
+        position: absolute;
+        right: 1.8cm;
+        bottom: 1.8cm;
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        border: 2px solid #c9a24a;
+        color: #8a6d2f;
+        font-size: 7.5pt;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        line-height: 1.4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        transform: rotate(-16deg);
+      }
+      .fine {
+        position: absolute;
+        left: 2.2cm;
+        right: 2.2cm;
+        bottom: 1.1cm;
+        font-size: 7.5pt;
+        color: #889;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cert">
+      <div class="frame">
+        <img
+          src="{{{assets.northwind-logo.v1}}}"
+          alt="{{parameterSets.disclosures.v1.bankname}} logo"
+        />
+        <div class="eyebrow">{{parameterSets.disclosures.v1.bankname}}</div>
+        <h1>Certificate of Deposit</h1>
+        <div class="eyebrow">Confirmation of account</div>
+        <div class="holder">{{data.holderName}}</div>
+        <div class="grid">
+          <div>
+            <div class="k">Certificate no.</div>
+            <div class="v">{{data.certificateNumber}}</div>
+          </div>
+          <div>
+            <div class="k">Principal</div>
+            <div class="v">
+              {{currency data.principal currency="USD" locale="en-US"
+              minFractionDigits=2 maxFractionDigits=2}}
+            </div>
+          </div>
+          <div>
+            <div class="k">APY</div>
+            <div class="v">
+              {{percent data.apy locale="en-US" minFractionDigits=2
+              maxFractionDigits=2}}
+            </div>
+          </div>
+          <div>
+            <div class="k">Term</div>
+            <div class="v">{{data.term}}</div>
+          </div>
+          <div>
+            <div class="k">Matures</div>
+            <div class="v">
+              {{date data.maturityDate locale="en-US" style="long"}}
+            </div>
+          </div>
+        </div>
+        <div class="seal">Confirmed<br />{{data.certificateNumber}}</div>
+        <div class="fine">
+          {{parameterSets.disclosures.v1.fdicnotice}} A penalty may be imposed
+          for early withdrawal.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
