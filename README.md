@@ -1,6 +1,6 @@
-# northwind-financial
+# minturn-financial
 
-Public **demo** template sources for [Paperglyph](https://paperglyph.com). Northwind Financial is a
+Public **demo** template sources for [Paperglyph](https://paperglyph.com). Minturn Financial is a
 fictional bank whose customer-facing deposit documents are authored here in git and governed on the
 platform — the story the live demo at [paperglyph.com/demo](https://paperglyph.com/demo) tells.
 

@@ -1,23 +1,23 @@
 [[templates]]
-key = "northwind-deposit-rate-sheet"
+key = "minturn-deposit-rate-sheet"
 label = "Deposit Rate Sheet"
 file = "templates/deposit-rate-sheet.hbs"
 
 [[templates]]
-key = "northwind-sample-portfolio-statement"
+key = "minturn-sample-portfolio-statement"
 label = "Quarterly Portfolio Statement"
 file = "templates/portfolio-statement.hbs"
 
 [[templates]]
-key = "northwind-sample-compliance-handbook"
+key = "minturn-sample-compliance-handbook"
 label = "Deposit Compliance Handbook"
 file = "templates/compliance-handbook.hbs"
 
 [[templates]]
-key = "northwind-sample-certificate"
+key = "minturn-sample-certificate"
 label = "Certificate of Deposit Confirmation"
 file = "templates/certificate.hbs"
 
 [[assets]]
-key = "northwind-logo"
-file = "assets/northwind-logo.svg"
+key = "minturn-logo"
+file = "assets/minturn-logo.svg"
